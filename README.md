@@ -1,15 +1,20 @@
 # koyosai-RegisterApp
 開発環境
 エディター
-  IntelliJ
-  
-バックエンド
-  Kotlin 17
-    Spring Boot
-    Gradle
+<dl>
+  <dt>IntelliJ</dt>
+</dl>
 
+バックエンド
+<dl>
+  <dt>Kotlin 17</dt>
+  <dd>Spring Boot</dd>
+  <dt>Gradle</dt>
+</dl>
 JDK 18.0.1
 
 フロントエンド
-  HTML
-  Thymeleaf
+<dl>
+  <dt>HTML</dt>
+  <dd>Thymeleaf</dd>
+</dl>
