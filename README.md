@@ -1,20 +1,19 @@
 # koyosai-RegisterApp
 開発環境
-エディター
 <dl>
-  <dt>IntelliJ</dt>
+  <dt>エディター</dt>
+  <dd>IntelliJ</dd>
 </dl>
 
-バックエンド
 <dl>
-  <dt>Kotlin 17</dt>
+<dt>バックエンド</dt>
+  <dd>Kotlin 17</dd>
   <dd>Spring Boot</dd>
-  <dt>Gradle</dt>
+  <dd>Gradle</dd>
 </dl>
 JDK 18.0.1
-
-フロントエンド
 <dl>
-  <dt>HTML</dt>
+<dt>フロントエンド</dt>
+  <dd>HTML</dd>
   <dd>Thymeleaf</dd>
 </dl>
