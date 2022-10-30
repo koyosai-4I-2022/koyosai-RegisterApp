@@ -6,6 +6,7 @@
 バックエンド
   Kotlin 17
     Spring Boot
+    Gradle
 
 JDK 18.0.1
 
