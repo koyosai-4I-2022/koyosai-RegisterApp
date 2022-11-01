@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam
 class HtmlController {
     public open var regiSlot = 0
     public open var i = 1
-    public open var j = 1
-    public open var timeList = arrayOf("start", "9:00", "9:05")
+    public open var j = 0
+    public open var timeList = arrayOf("start", "9:00", "9:05", )
 
     @GetMapping("/")
     //Home
@@ -28,11 +28,13 @@ class HtmlController {
     fun register(touroku: Model): String{
 
         //htmlに値を渡す
-        touroku.addAttribute("timeTable", timeList[j+1])
+        touroku.addAttribute("timeTable", timeList[j])
         if (regiSlot == 6) {
             touroku.addAttribute("registerTime", timeList[i+1])
+            touroku.addAttribute("regiSlot", "0")
         } else {
             touroku.addAttribute("registerTime", timeList[i])
+            touroku.addAttribute("regiSlot", regiSlot)
         }
 
         return "register"
@@ -59,6 +61,20 @@ class HtmlController {
     fun operation(): String{
 
         return "operation"
+    }
+
+    @GetMapping("/member")
+    //シフトページ
+    fun member(): String{
+
+        return "member"
+    }
+
+    @GetMapping("/success")
+    //時間更新成功
+    fun success(): String{
+        j++
+        return "success"
     }
 
 }
