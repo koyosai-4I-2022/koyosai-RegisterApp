@@ -1,19 +1,159 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="{height: 100%}">
 <head>
+    <script src="https://kit.fontawesome.com/266db6bea2.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>register</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+            height: 100%;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        button {
+            padding: 2rem;
+            background-color: #6370EB;
+            border-color: #6370EB;
+            color: white;
+            border-radius: 30px;
+            font-size: xx-large;
+        }
+
+        .hundred-button {
+            width: 100%;
+        }
+
+        .half-button {
+            width: 40%;
+        }
+
+        .infight {
+            color: white;
+        }
+
+        .heading {
+            color: #6370EB;
+            font-size:xxx-large;
+            font-weight: bold;
+        }
+
+        .flex-container {
+            padding: 10%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .flex-grow-item {
+            align-self: center;
+            justify-self: center;
+        }
+
+        .flex-second-grow-item {
+            justify-self: center;
+        }
+
+        header.space-line {
+            font-size: xx-large;
+            border-bottom: 1px solid #6370EB;
+            padding: 1%;
+        }
+
+        .time {
+            font-size: 10rem;
+            font-weight: bold;
+        }
+
+        .dialog-buttons {
+            display: flex;
+        }
+
+        #confirmDialog {
+            padding: 3%;
+            border-radius: 30px;
+            background-color: #4a5568;
+            border-color: #4a5568;
+            color: white;
+            width: 85%;
+            letter-spacing: .2rem;
+        }
+
+        .ml-6 {
+            margin-left: 6rem; 
+        }
+
+        .text-largest {
+            font-size: xxx-large;
+        }
+    </style>
 </head>
-<body>
-    <h2>現在ご案内している時間帯は</h2>
-    <h1 th:nowTimeH = ${nowTimeH} th:nowTimeTable = ${nowTimeLine}>[[${nowTimeH}]]:[[${nowTimeTable}]]</h1>
-    <h2>です。</h2>
-    <br>
-    <h2>今予約した場合のゲーム開始時間は</h2>
-    <h1 th:timeH = ${timeH} th:timeTable = ${timeLine}>[[${timeH}]]:[[${registerTime}]]</h1>
-    <h2>です。</h2>
-    <p>集合時間はプレイ時間の5分前になります。</p>
-    <p>ゲーム開始時間までに集合場所に来られなかった場合、予約はキャンセルとなりますのでご注意ください。</p>
-    <input type="button" onclick="location.href='/load'" value="予約する">
+<body class="infight">
+    <header class="space-line">4I 展示予約</header>
+    <div class="flex-container">
+        <h1 class="heading">予約</h1>
+        <!-- <div>
+            <h2>現在ご案内している時間帯は</h2> -->
+            <!-- <h1 th:timeTable= ${timeTable}>[[${timeTable}]]</h1> -->
+            <!-- <h1>9時</h1>
+            <h2>となります。</h2>
+        </div> -->
+        <div class="flex-grow-item">
+            <h2>今予約した場合のゲーム開始時間は</h2>
+            <!-- <h1 th:registerTime = ${registerTime}>[[${registerTime}]]</h1> -->
+            <h1 class="time">9時30分</h1>
+            <!-- <h2>となります。</h2>
+            <p>集合時間はプレイ時間の5分前になります。</p>
+            <p>ゲーム開始時間までに集合場所に来られなかった場合、予約はキャンセルとなりますのでご注意ください。</p> -->
+        </div>
+        <div class="flex-second-grow-item">
+            <button id="openModalButton" class="hundred-button">
+                予約する
+            </button>
+        </div>
+        <dialog id="confirmDialog">
+            <ul class="text-largest">
+                <li>
+                    次のページを必ずスクリーンショットしてください
+                </li>
+                <li>
+                    集合時間はプレイ時間の5分前になります。
+                </li>
+                <li>
+                    ゲーム開始時間までに集合場所に来られなかった場合、予約はキャンセルとなりますのでご注意ください。
+                </li>
+            </ul>
+            <div class="dailog-buttons">
+                <menu>
+                    <button class="half-button" value="default" onclik="location.href='/ticket'">予約する</button>
+                    <button class="half-button ml-6" id="cancelButton" value="cancel">キャンセル</button>
+                </menu>
+            </div>
+        </dialog>
+        <footer>
+            <span>© 4I Geek Team</span>
+        </footer>
+    </div>
 </body>
+<script>
+    const openModalButton = document.getElementById('openModalButton')
+    const confirmDialog = document.getElementById('confirmDialog')
+    const cancelButton = document.getElementById('cancelButton')
+
+    openModalButton.addEventListener('click', () => {
+        confirmDialog.showModal()
+    })
+
+    cancelButton.addEventListener('click', () => {
+        confirmDialog.close()
+    })
+</script>
 </html>
