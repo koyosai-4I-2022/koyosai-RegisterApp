@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 class HtmlController {
+    //操作用変数
     public open var regiSlot = 0
+    public open var hNow = 0
+    public open var h = 0
     public open var i = 1
     public open var j = 0
-    public open var timeList = arrayOf("start", "9:00", "9:05", )
+    //時間枠
+    public open var time = arrayOf("9", "10", "11", "12", "13", "14", "15", "16", "終了")
+    public open var timeList = arrayOf("00", "06", "12", "18", "24", "30", "36", "42", "48", "54", "しました")
 
     @GetMapping("/")
     //Home
@@ -28,30 +33,43 @@ class HtmlController {
     fun register(touroku: Model): String{
 
         //htmlに値を渡す
-        touroku.addAttribute("timeTable", timeList[j])
+        touroku.addAttribute("nowTimeH", time[hNow])
+        touroku.addAttribute("nowTimeTable", timeList[j])
         if (regiSlot == 6) {
+            touroku.addAttribute("timeH", time[h])
             touroku.addAttribute("registerTime", timeList[i+1])
-            touroku.addAttribute("regiSlot", "0")
+            touroku.addAttribute("regiSlot", "6")
         } else {
+            touroku.addAttribute("timeH", time[h])
             touroku.addAttribute("registerTime", timeList[i])
-            touroku.addAttribute("regiSlot", regiSlot)
+            touroku.addAttribute("regiSlot", 6-regiSlot)
         }
 
         return "register"
+    }
+
+    @GetMapping("/load")
+    fun toTicket(): String{
+
+        return "load"
     }
 
     @GetMapping("/ticket")
     //予約情報ページ
     fun ticket(seiriken: Model):String{
         //予約時間
-        val timeTable = "11:10"
         regiSlot++
         if (regiSlot > 6){
             i++
             regiSlot = 1
         }
+        if (i > 9){
+            h++
+            i = 0
+        }
 
         //htmlに値を渡す
+        seiriken.addAttribute("timeH", time[h])
         seiriken.addAttribute("timeLine", timeList[i])
         return "ticket"
     }
@@ -74,6 +92,10 @@ class HtmlController {
     //時間更新成功
     fun success(): String{
         j++
+        if (j > 9){
+            hNow++
+            j = 0
+        }
         return "success"
     }
 
