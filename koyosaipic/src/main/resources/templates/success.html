@@ -1,11 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://kit.fontawesome.com/266db6bea2.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>success</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+            height: 100%;
+        }
+
+        header.space-line {
+            font-size: xx-large;
+            border-bottom: 1px solid #6370EB;
+            padding: 1%;
+        }
+
+        .text-largest {
+            font-size: 50rem;
+        }
+
+        .text-color {
+            color: #6370EB;
+        }
+
+        .text-color-white {
+            color: white;
+        }
+
+        .flex-style {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center;
+            align-items: center; */
+            height: 100%;
+        }
+
+        .flex-grow {
+            flex: 90%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .text-xxlarge {
+            font-size: xx-large;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .p-3 {
+            padding: 3rem;
+        }
+    </style>
 </head>
-<body>
-    <h1>更新完了</h1>
-    <input type="button" onclick="location.href='/operation'" value="戻る">
+<body class="text-color-white">
+    <header class="space-line">4I 展示予約</header>
+    <div class="flex-style ">
+        <div class="flex-grow">
+            <div class="text-xxlarge">
+                <h1>9時30分 予約完了</h1>
+            </div>
+            <i class="fa-regular fa-circle-check text-largest text-color"></i>
+            <p class="text-xxlarge">
+                スクリーンショットお願いいたします
+            </p>
+        </div>
+        <footer class="text-center p-3">
+            <span>© 4I Geek Team</span>
+        </footer>
+    </div>
 </body>
 </html>
