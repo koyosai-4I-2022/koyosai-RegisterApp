@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
@@ -54,9 +55,9 @@ class HtmlController {
         return "load"
     }
 
-    @GetMapping("/ticket")
-    //予約情報ページ
-    fun ticket(seiriken: Model):String{
+    @GetMapping("/bookingProcess")
+    //予約処理（中間ページにアクセスして動作→整理券画面にリダイレクト）
+    fun booking(): String{
         //予約時間
         regiSlot++
         if (regiSlot > 6){
@@ -67,6 +68,12 @@ class HtmlController {
             h++
             i = 0
         }
+        return "redirect:ticket"
+    }
+
+    @GetMapping("/ticket")
+    //予約情報ページ
+    fun ticket(seiriken: Model):String{
 
         //htmlに値を渡す
         seiriken.addAttribute("timeH", time[h])
