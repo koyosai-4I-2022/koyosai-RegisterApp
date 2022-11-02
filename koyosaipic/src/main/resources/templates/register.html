@@ -6,14 +6,14 @@
 </head>
 <body>
     <h2>現在ご案内している時間帯は</h2>
-    <h1 th:timeTable= ${timeTable}>[[${timeTable}]]</h1>
-    <h2>となります。</h2>
+    <h1 th:nowTimeH = ${nowTimeH} th:nowTimeTable = ${nowTimeLine}>[[${nowTimeH}]]:[[${nowTimeTable}]]</h1>
+    <h2>です。</h2>
     <br>
     <h2>今予約した場合のゲーム開始時間は</h2>
-    <h1 th:registerTime = ${registerTime}>[[${registerTime}]]</h1>
-    <h2>となります。</h2>
+    <h1 th:timeH = ${timeH} th:timeTable = ${timeLine}>[[${timeH}]]:[[${registerTime}]]</h1>
+    <h2>です。</h2>
     <p>集合時間はプレイ時間の5分前になります。</p>
     <p>ゲーム開始時間までに集合場所に来られなかった場合、予約はキャンセルとなりますのでご注意ください。</p>
-    <input type="button" onclick="location.href='/ticket'" value="予約する">
+    <input type="button" onclick="location.href='/load'" value="予約する">
 </body>
 </html>

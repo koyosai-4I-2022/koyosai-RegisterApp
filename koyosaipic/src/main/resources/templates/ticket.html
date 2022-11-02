@@ -7,7 +7,7 @@
 <body>
     <h1>予約完了</h1>
     <br>
-    <h2 th:timeTable = ${timeLine}>ゲーム開始時間は[[${timeLine}]]です。</h2>
+    <h2 th:timeH = ${timeH} th:timeTable = ${timeLine}>ゲーム開始時間は[[${timeH}]]:[[${timeLine}]]です。</h2>
     <h2>集合時間はゲーム開始時間の5分前になりますのでそれまでに受付へお越しください。</h2>
     <h3>また，この画面が整理券となりますので必ずスクリーンショットをお取りください。</h3>
     <input type="button" onclick="location.href='/register'" value="戻る">
