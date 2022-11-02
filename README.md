@@ -17,3 +17,5 @@ JDK 18.0.1
   <dd>HTML</dd>
   <dd>Thymeleaf</dd>
 </dl>
+
+~~セキュリティのセの字もありません...~~
