@@ -3,10 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-color: black;
+            height: 100%;
+        }
+
+        header.space-line {
+            font-size: xx-large;
+            border-bottom: 1px solid #6370EB;
+            padding: 1%;
+        }
+
+        .text-color-white {
+            color: white;
+        }
+
+        .text-largest {
+            font-size: 5rem;
+        }
+
+        .text-color {
+            color: #6370EB;
+        }
+
+        .text-xxlarge {
+            font-size: xx-large;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .p-3 {
+            padding: 3rem;
+        }
+
+        button {
+            padding: 2rem;
+            background-color: #6370EB;
+            border-color: #6370EB;
+            color: white;
+            border-radius: 30px;
+            font-size: xx-large;
+        }
+
+        .hundred-button {
+            width: 100%;
+        }
+
+        .half-button {
+            width: 40%;
+        }
+
+        .flex {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-almost {
+            flex: 80%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-little {
+            flex: 5%
+        }
+
+        .p-2 {
+            padding: 2rem;
+        }
+
+        .p-1 {
+            padding: 1rem;
+        }
+    </style>
 </head>
-<body>
-    <h1 th:text= ${test}>[[${test}]]</h1>
-    <br>
-    <input type="button" onclick="location.href='/register'" value="予約ページ">
+<body class="text-color-white">
+    <header class="space-line">4I 展示予約</header>
+    <!-- <h1 th:text= ${test}>[[${test}]]</h1> -->
+    <div class="flex">
+        <hgroup class="flex-almost text-largest">
+            <p>現在案内中のグループは</p>
+            <h1>
+                9時30分
+            </h1>
+        </hgroup>
+        <button class="hundred-button" onclick="location.href='/register'">
+            予約ページ
+        </button>
+        <footer class="text-center p-1 text-xxlarge">
+            <span>© 4I Geek Team</span>
+        </footer>
+    </div>
 </body>
 </html>
