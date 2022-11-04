@@ -3,106 +3,88 @@ package com.example.koyosaipic
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
+import com.example.koyosaipic.entity.InsertId
+import com.example.koyosaipic.repository.IdRepo
+import com.example.koyosaipic.service.ReservationService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
+import java.util.*
 
 @Controller
-class HtmlController {
+class HtmlController(private val reservationService: ReservationService) {
+    @Autowired
+    lateinit var idRepo: IdRepo
+
     //操作用変数
-    public open var regiSlot = 0
-    public open var hNow = 0
-    public open var h = 0
-    public open var i = 1
-    public open var j = 0
+    var regiSlot = 0
+    var hNow: String = "9"
+    var mNow: String = "00"
+    var min : Int = 0
+    var hour : Int = 0
+
     //時間枠
-    public open var time = arrayOf("9", "10", "11", "12", "13", "14", "15", "16", "終了")
-    public open var timeList = arrayOf("00", "06", "12", "18", "24", "30", "36", "42", "48", "54", "しました")
+    var time = arrayOf("9", "10", "11", "12", "13", "14", "15", "16", "終了")
+    var timeList = arrayOf("06", "12", "18", "24", "30", "36", "42", "48", "54", "00", "終了")
 
     @GetMapping("/")
     //Home
-    fun home(model: Model): String {
-        val test = "Home"
-        model.addAttribute("test", test)
-        //model["title"] = "test"
+    fun home(nowTime: Model): String {
+        nowTime.addAttribute("hNow", hNow)
+        nowTime.addAttribute("mNow", mNow)
         return "index"
     }
 
     @GetMapping("/register")
     //登録用ページ
-    fun register(touroku: Model): String{
+    fun register(touroku: Model): String {
 
         //htmlに値を渡す
-        touroku.addAttribute("nowTimeH", time[hNow])
-        touroku.addAttribute("nowTimeTable", timeList[j])
+        touroku.addAttribute("hNow", hNow)
+        touroku.addAttribute("mNow", mNow)
         if (regiSlot == 6) {
-            touroku.addAttribute("timeH", time[h])
-            touroku.addAttribute("registerTime", timeList[i+1])
-            touroku.addAttribute("regiSlot", "6")
+            touroku.addAttribute("timeH", time[hour])
+            touroku.addAttribute("registerTime", timeList[min + 1])
         } else {
-            touroku.addAttribute("timeH", time[h])
-            touroku.addAttribute("registerTime", timeList[i])
-            touroku.addAttribute("regiSlot", 6-regiSlot)
+            touroku.addAttribute("timeH", time[hour])
+            touroku.addAttribute("registerTime", timeList[min])
         }
 
         return "register"
     }
-
-    @GetMapping("/load")
-    fun toTicket(): String{
-
-        return "load"
+    @PostMapping("/reservation")
+    fun reservation(): String{
+        reservationService.save()
+        return "redirect:success"
     }
 
-    @GetMapping("/bookingProcess")
-    //予約処理（中間ページにアクセスして動作→整理券画面にリダイレクト）
-    fun booking(): String{
-        //予約時間
-        regiSlot++
-        if (regiSlot > 6){
-            i++
-            regiSlot = 1
-        }
-        if (i > 9){
-            h++
-            i = 0
-        }
-        return "redirect:ticket"
-    }
-
-    @GetMapping("/ticket")
-    //予約情報ページ
-    fun ticket(seiriken: Model):String{
-
-        //htmlに値を渡す
-        seiriken.addAttribute("timeH", time[h])
-        seiriken.addAttribute("timeLine", timeList[i])
-        return "ticket"
-    }
 
     @GetMapping("/operation")
     //運営ページ
-    fun operation(): String{
+    fun operation(): String {
 
         return "operation"
     }
 
-    @GetMapping("/member")
-    //シフトページ
-    fun member(): String{
-
-        return "member"
+    @PostMapping("/operation")
+    //プレイ中の時間枠設定
+    fun timeSet(@RequestParam hour: String, @RequestParam min: String) {
+        hNow = hour
+        mNow = min
     }
 
+
+
     @GetMapping("/success")
-    //時間更新成功
-    fun success(): String{
-        j++
-        if (j > 9){
-            hNow++
-            j = 0
-        }
+    fun success(seiriken: Model): String {
+        //予約成功
+        var i = idRepo.findAll()
+        var iLength = i.size
+        min = iLength / 6
+        hour = iLength / 60
+        //htmlに値を渡す
+        seiriken.addAttribute("timeH", time[hour])
+        seiriken.addAttribute("timeLine", timeList[min])
         return "success"
     }
 

@@ -100,16 +100,15 @@
     <header class="space-line">4I 展示予約</header>
     <div class="flex-container">
         <h1 class="heading">予約</h1>
-        <!-- <div>
-            <h2>現在ご案内している時間帯は</h2> -->
-            <!-- <h1 th:timeTable= ${timeTable}>[[${timeTable}]]</h1> -->
-            <!-- <h1>9時</h1>
+        <div>
+            <h2>現在ご案内している時間帯は</h2>
+            <h1 th:hNow=${hNow} th:mNow= ${mNow}>[[${hNow}]]:[[${mNow}]]</h1>
             <h2>となります。</h2>
-        </div> -->
+        </div>
         <div class="flex-grow-item">
             <h2>今予約した場合のゲーム開始時間は</h2>
-            <!-- <h1 th:registerTime = ${registerTime}>[[${registerTime}]]</h1> -->
-            <h1 class="time">9時30分</h1>
+            <!-- <h1  -->
+            <h1 class="time" th:timeH = ${timeH} th:registerTime = ${registerTime}>[[${timeH}]]:[[${registerTime}]]</h1>
             <!-- <h2>となります。</h2>
             <p>集合時間はプレイ時間の5分前になります。</p>
             <p>ゲーム開始時間までに集合場所に来られなかった場合、予約はキャンセルとなりますのでご注意ください。</p> -->
@@ -133,7 +132,7 @@
             </ul>
             <div class="dailog-buttons">
                 <menu>
-                    <button class="half-button" value="default" onclik="location.href='/ticket'">予約する</button>
+                    <button id="confirm-button" class="half-button" value="default">予約する</button>
                     <button class="half-button ml-6" id="cancelButton" value="cancel">キャンセル</button>
                 </menu>
             </div>
@@ -147,6 +146,7 @@
     const openModalButton = document.getElementById('openModalButton')
     const confirmDialog = document.getElementById('confirmDialog')
     const cancelButton = document.getElementById('cancelButton')
+    const confirmButton = document.getElementById('confirm-button')
 
     openModalButton.addEventListener('click', () => {
         confirmDialog.showModal()
@@ -154,6 +154,14 @@
 
     cancelButton.addEventListener('click', () => {
         confirmDialog.close()
+    })
+
+    confirmButton.addEventListener('click', () => {
+        fetch('http://localhost:8080/reservation', {method: "POST"}).then(res => {
+            if (res.status == '200') {
+                window.location = '/success';
+            }
+        })
     })
 </script>
 </html>

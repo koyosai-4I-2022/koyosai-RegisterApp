@@ -93,10 +93,8 @@
     <!-- <h1 th:text= ${test}>[[${test}]]</h1> -->
     <div class="flex">
         <hgroup class="flex-almost text-largest">
-            <p>現在案内中のグループは</p>
-            <h1>
-                9時30分
-            </h1>
+            <h3>現在ご案内中の時間は</h3>
+            <h1 th:hNow="${hNow}" th:mNow="${mNow}">[[${hNow}]]時[[${mNow}]]分</h1>
         </hgroup>
         <button class="hundred-button" onclick="location.href='/register'">
             予約ページ
