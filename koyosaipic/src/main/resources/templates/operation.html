@@ -6,8 +6,41 @@
 </head>
 <body>
     <h1>運営ページ</h1>
-
-    <input type="button" onclick="location.href='/success'" value="時間更新">
-    <input type="button" onclick="location.href='/member'" value="シフト表">
+    <form action="/operation" method="post">
+        <div>
+            <label for="hour">時間(h)</label>
+            <select name="hour" id="hour">
+                <option value="">選択してください</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+            </select>
+            <label for="min">分(m)</label>
+            <select id="min" name="min">
+                <option value="">選択してください</option>
+                <option value="00">00</option>
+                <option value="04">04</option>
+                <option value="08">08</option>
+                <option value="12">12</option>
+                <option value="16">16</option>
+                <option value="20">20</option>
+                <option value="24">24</option>
+                <option value="28">28</option>
+                <option value="32">32</option>
+                <option value="36">36</option>
+                <option value="40">40</option>
+                <option value="44">44</option>
+                <option value="48">48</option>
+                <option value="52">52</option>
+                <option value="56">56</option>
+            </select>
+            <button type="submit">更新</button>
+        </div>
+    </form>
 </body>
 </html>
