@@ -18,13 +18,13 @@ class HtmlController(private val reservationService: ReservationService) {
 
     //操作用変数
     var regiSlot = 0
-    var hNow: String = "9"
+    var hNow: String = "10"
     var mNow: String = "00"
     var min : Int = 0
     var hour : Int = 0
 
     //時間枠
-    var time = arrayOf("9", "10", "11", "12", "13", "14", "15", "16", "終了")
+    var time = arrayOf("10", "11", "12", "13", "14", "15", "16", "終了", "終了")
     var timeList = arrayOf("06", "12", "18", "24", "30", "36", "42", "48", "54", "00", "終了")
 
     @GetMapping("/")
